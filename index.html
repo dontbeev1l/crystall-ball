@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+    <style>
+        .dbe-crystal-ball-wrapper {
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            user-select: none;
+        }
+
+        @keyframes ballClick {
+            0% {
+                transform: rotate(10deg);
+            }
+
+            50% {
+                transform: rotate(-10deg);
+            }
+
+            75% {
+                transform: rotate(5deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .dbe-crystal-ball-wrapper img {
+            width: 100%;
+            transform-origin: 60% 60%;
+        }
+
+        .dbe-crystal-ball-wrapper img:active {
+            width: 100%;
+            animation: ballClick 200ms linear;
+        }
+
+        @keyframes textShow {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+            }
+
+            70% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .text {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 40%;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            animation: textShow 400ms linear;
+            text-align: center;
+        }
+    </style>
+    <div class="container">
+        <h2>
+            Набросок шара:
+        </h2>
+        <div class="dbe-crystal-ball-wrapper">
+            <img src="./ball.png" alt="ball">
+
+            <div class="text-containet">
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+
+        document.querySelector('.dbe-crystal-ball-wrapper').addEventListener('click', () => {
+            const texts = ['Все будет хорошо!', 'Все будет не очень хорошо!', 'Салат пропал', 'Новый год 2021', 'Дееееед Морозо!', 'НЕТТТ', 'Деньги и слава']
+            const text = document.createElement('div');
+            text.classList.add('text');
+
+            const textContainer = document.querySelector('.text-containet');
+
+            Array.from(textContainer.children).forEach((div) => {
+                textContainer.removeChild(div)
+            });
+
+            text.innerText = texts[~~(Math.random() * (texts.length - 1.51))];
+
+
+            textContainer.appendChild(text);
+        })
+    </script>
+</body>
+
+</html>
